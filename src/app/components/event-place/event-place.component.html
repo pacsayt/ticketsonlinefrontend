@@ -1,0 +1,35 @@
+<div class="title-part">Edit event places</div>
+
+<!--
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+      </tr>
+    </tbody>
+-->
+<div class="table-part">
+  <div>Id</div>
+  <div>Name</div>
+  <div>Number of seats</div>
+</div>
+
+<div class="table-part" *ngFor="let eventPlace of getEventPlaces()">
+  <div>{{eventPlace.getId}}</div>
+  <div>{{eventPlace.getName}}</div>
+  <div>{{eventPlace.getNoOfSeats}}</div>
+</div>
+
+<div class="input-part">
+  <div>Name :<input type="text" name="nameinput" minlength="4" maxlength="15" [(ngModel)]="actName"></div>
+  <div>Number of seats:<input type="text" name="noofseatsinput" [(ngModel)]="actNoOfSeats"></div>
+</div>
+
+<div class="button-part">
+  <button (click)="onSave(actName, actNoOfSeats)" class="btn">Save</button>
+</div>

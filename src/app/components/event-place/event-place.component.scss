@@ -1,0 +1,35 @@
+body {
+  font-family: Arial;
+  margin: 40px;
+  border: 10px;
+  padding: 5px;
+}
+
+.title-part {
+  font-size: large;
+  font-weight: bold;
+}
+
+.table-part {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.input-part {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.button-part  {
+  display: grid;
+  grid-template-columns: 20%;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
