@@ -20,9 +20,9 @@
 </div>
 
 <div class="table-part" *ngFor="let eventPlace of getEventPlaces()">
-  <div>{{eventPlace.getId}}</div>
-  <div>{{eventPlace.getName}}</div>
-  <div>{{eventPlace.getNoOfSeats}}</div>
+  <div (click)="onTableRowClicked(eventPlace)">{{eventPlace.getId()}}</div>
+  <div (click)="onTableRowClicked(eventPlace)">{{eventPlace.getName()}}</div>
+  <div (click)="onTableRowClicked(eventPlace)">{{eventPlace.getNoOfSeats()}}</div>
 </div>
 
 <div class="input-part">
