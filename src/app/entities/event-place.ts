@@ -1,29 +1,55 @@
 export class EventPlace {
 
-  constructor(private iD : number, private name : string, private noOfSeats : number) { }
+  public static readonly undefinedId : number = -1; // == const since TS 2.0
+
+  constructor(private _iD : number, private _name : string, private _noOfSeats : number) { }
+
+  get iD(): number {
+    return this._iD;
+  }
+
+  set iD(value: number) {
+    this._iD = value;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
+  }
+
+  get noOfSeats(): number {
+    return this._noOfSeats;
+  }
+
+  set noOfSeats(value: number) {
+    this._noOfSeats = value;
+  }
 
   public getId(): number {
-    return this.iD;
+    return this._iD;
   }
 
   public getName(): string {
-    return this.name;
+    return this._name;
   }
 
   public getNoOfSeats(): number {
-    return this.noOfSeats;
+    return this._noOfSeats;
   }
 
   public setId( iD : number): void {
-    this.iD = iD;
+    this._iD = iD;
   }
 
   public setName( name : string): void {
-    this.name = name;
+    this._name = name;
   }
 
   public setNoOfSeats( noOfSeats : number): void {
-    this.noOfSeats = noOfSeats;
+    this._noOfSeats = noOfSeats;
   }
 
 }

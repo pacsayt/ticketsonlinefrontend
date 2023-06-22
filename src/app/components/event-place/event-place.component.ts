@@ -11,6 +11,7 @@ export class EventPlaceComponent implements OnInit {
 
   private eventPlaces : EventPlace[] = [];
 
+  actId : number = EventPlace.undefinedId;
   actName : string = '';
   actNoOfSeats : number = 0;
 
@@ -26,21 +27,41 @@ export class EventPlaceComponent implements OnInit {
   }
 
   public onTableRowClicked( eventPlaceClicked : EventPlace) : void {
-    this.actName = eventPlaceClicked.getName();
-    this.actNoOfSeats = eventPlaceClicked.getNoOfSeats();
+    this.actId = eventPlaceClicked.iD;
+    this.actName = eventPlaceClicked.name;
+    this.actNoOfSeats = eventPlaceClicked.noOfSeats;
   }
 
-  public onSave(newName : string, newNoOfSeats : number): void {
+  // Saves / updates  fields actId / actName / actNoOfSeats
+  public onSave(): void {
+
+    if ( this.actId === EventPlace.undefinedId ) {
+      const nextId: number = this.getNextId(); // pt++ : thought as a temporary solution until getting id from backend
+
+      this.eventPlaces.push(new EventPlace(nextId, this.actName, this.actNoOfSeats));
+    }
+    else {
+      const toBeUpdatedEventPlace : EventPlace | undefined = this.getEventPlaceById( this.actId);
+
+      if ( toBeUpdatedEventPlace != undefined ) {
+        toBeUpdatedEventPlace.name = this.actName;
+        toBeUpdatedEventPlace.noOfSeats = this.actNoOfSeats;
+      }
+    }
+
+    this.actId = EventPlace.undefinedId;
     this.actName = "";
     this.actNoOfSeats = 0;
-
-    const nextId: number = this.getNextId(); // pt++ : thought as a temporary solution until getting id from backend
-
-    this.eventPlaces.push( new EventPlace(nextId, newName, newNoOfSeats));
   }
 
   private getNextId() : number {
     const idMax : number = this.eventPlaces.map( e => e.getId()).reduce( ( id1, id2 ) => id1 > id2 ? id1 : id2);
     return idMax + 1;
+  }
+
+  private getEventPlaceById( searchedId : number ) : EventPlace | undefined {
+
+    const eventPlacesFound : EventPlace[] = this.eventPlaces.filter( e => e.iD === searchedId);
+    return eventPlacesFound.length > 0 ? eventPlacesFound[0] : undefined;
   }
 }
